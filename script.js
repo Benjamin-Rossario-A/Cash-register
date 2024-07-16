@@ -46,4 +46,29 @@ const checkRegister = () => {
   if (totalCid === changeDue) {
     result.status = "CLOSED";
   }
+  for (let idx = 0; idx < reversedCid.length; idx++) {
+    if (changeDue > 0 && changeDue >= denominations[i]) {
+      count = 0;
+
+      while (changeDue >= denominations[i]) {
+        reversedCid[i][1] -= denominations[i];
+        changeDue = changeDue - denominations;
+        changeDue = parseFloat(changeDue).toFixed(2);
+        count++;
+      }
+      if (count > 0) {
+        result.change.push([reversedCid[i][0], count * denominations[i]]);
+      }
+    }
+    if (changeDue > 0) {
+      return (displayChangeDue.innerHTML = "<p>Status: INSUFFICIENT_FUNDS</p>");
+    }
+  }
+};
+
+const checkResults = () => {
+  if (!cash.value) {
+    return alert("Enter amount");
+  }
+  checkCashRegister();
 };
