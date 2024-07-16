@@ -40,16 +40,14 @@ const checkRegister = () => {
   );
 
   if (totalCid < changeDue) {
-    displayChangeDue.innerHTML = "<p>Status: INSUFFICIENT_FUNDS1</p>";
+    displayChangeDue.innerHTML = "<p>Status: INSUFFICIENT_FUNDS</p>";
     return;
   }
   if (totalCid === changeDue) {
-    result.status = "CLOSED";
+    result.status = "CLOSED ";
   }
-  console.log(reversedCid.length);
-  for (let idx = 0; idx < reversedCid.length; idx++) {
-    console.log(1);
 
+  for (let idx = 0; idx < reversedCid.length; idx++) {
     if (changeDue >= denominations[idx] && changeDue > 0) {
       let count = 0;
       let cashValue = reversedCid[idx][1];
@@ -57,16 +55,14 @@ const checkRegister = () => {
         cashValue -= denominations[idx];
         changeDue = parseFloat((changeDue - denominations[idx]).toFixed(2));
         count++;
-        console.log(changeDue);
       }
       if (count > 0) {
         result.change.push([reversedCid[idx][0], count * denominations[idx]]);
       }
     }
-    console.log(changeDue);
   }
   if (changeDue > 0) {
-    return (displayChangeDue.innerHTML = "<p>Status: INSUFFICIENT_FUNDS2</p>");
+    return (displayChangeDue.innerHTML = "<p>Status: INSUFFICIENT_FUNDS</p>");
   }
   formatOutput(result.status, result.change);
   updateUI(result.change);
