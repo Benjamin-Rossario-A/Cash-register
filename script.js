@@ -69,6 +69,7 @@ const checkRegister = () => {
     return (displayChangeDue.innerHTML = "<p>Status: INSUFFICIENT_FUNDS2</p>");
   }
   formatOutput(result.status, result.change);
+  updateUI(result.change);
 };
 
 const formatOutput = (status, change) => {
@@ -78,6 +79,35 @@ const formatOutput = (status, change) => {
   );
   return;
 };
+
+const updateUI = (change) => {
+  const currencyNameMap = {
+    PENNY: "Pennies",
+    NICKEL: "Nickels",
+    DIME: "Dimes",
+    QUARTER: "Quarters",
+    ONE: "Ones",
+    FIVE: "Fives",
+    TEN: "Tens",
+    TWENTY: "Twenties",
+    "ONE HUNDRED": "Hundreds",
+  };
+  if (change) {
+    change.forEach((changeArr) => {
+      const targetArr = cid.find((cidArr) => cidArr[0] === changeArr[0]);
+      targetArr[1] = parseFloat((targetArr[1] - changeArr[1]).toFixed(2));
+    });
+  }
+
+  cash.value = "";
+  priceScreen.textContent = `Total: $${price}`;
+  cashDrawerDisplay.innerHTML = `<p><strong>Change in drawer:</strong></p>
+      ${cid
+        .map((cash) => `<p>${currencyNameMap[cash[0]]}: $${cash[1]}</p>`)
+        .join("")}  
+    `;
+};
+
 const checkResults = () => {
   if (!cash.value) {
     return alert("Enter amount");
