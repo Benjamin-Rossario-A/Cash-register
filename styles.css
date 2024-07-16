@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.main-heading {
+  font-size: 48px;
+  text-align: center;
+  padding: 30px 15px;
+}
+.input-div {
+  font-size: 32px;
+  height: auto;
+  width: auto;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.purchase-btn {
+  font-size: 26px;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+.user-input {
+  font-size: 26px;
+  padding: 10px;
+  border-radius: 15px;
+}
+.container {
+  height: auto;
+  width: auto;
+  padding: 30px 15px;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
